@@ -1,9 +1,11 @@
 import 'state.dart';
+import 'dart:async';
 
 class StateManager{
   
   Map<String,State> _stateMap;
   State _currentState;
+  StreamSubscription _currentSubscription;
   
   StateManager(){
     
@@ -20,8 +22,12 @@ class StateManager{
   
   void initState(String state){
     _currentState = _stateMap[state];
-    _currentState.listen((message){print("Message: $message");},
+    _currentSubscription = _currentState.listen((message){print("Message: $message");},
             onDone: onDoneHandler);
+
+    //Testing pause-resume
+    _currentSubscription.pause();
+    new Timer(const Duration(seconds: 1), _currentSubscription.resume);
   }
   
   void onDoneHandler(){

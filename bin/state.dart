@@ -24,17 +24,24 @@ abstract class State extends Stream<String> {
   }
   
   _onListen(){
+	  print("Constructing");
     preload();
     create();
     update();
                
   }
   
-  _onPause(){}
+  _onPause(){
+	  print("Pause");
+  }
   
-  _onResume(){}
+  _onResume(){
+	  print("Resume");
+  }
   
-  _onCancel(){}
+  _onCancel(){
+	  print("Deconstructing");
+  }
   
   preload(){}
   
