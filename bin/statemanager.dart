@@ -24,10 +24,6 @@ class StateManager{
     _currentState = _stateMap[state];
     _currentSubscription = _currentState.listen((message){print("Message: $message");},
             onDone: onDoneHandler);
-
-    //Testing pause-resume
-    _currentSubscription.pause();
-    new Timer(const Duration(seconds: 1), _currentSubscription.resume);
   }
   
   void onDoneHandler(){
@@ -44,6 +40,14 @@ class StateManager{
     _currentSubscription = _currentState.listen((message){print("Message: $message");},
         onDone: onDoneHandler);
   }
+
+	void pauseState(){
+		_currentSubscription.pause();
+	}
+
+	void resumeState(){
+		_currentSubscription.resume();
+	}
   
   
 }
