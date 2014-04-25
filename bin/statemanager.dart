@@ -41,7 +41,7 @@ class StateManager{
   
   void nextState(){
     _currentState = _stateMap[_currentState.nextState];
-    _currentState.listen((message){print("Message: $message");},
+    _currentSubscription = _currentState.listen((message){print("Message: $message");},
         onDone: onDoneHandler);
   }
   
