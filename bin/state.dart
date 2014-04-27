@@ -28,7 +28,6 @@ abstract class State extends Stream<String> {
     preload();
     create();
     update();
-               
   }
   
   void _onPause(){

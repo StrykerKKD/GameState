@@ -23,7 +23,11 @@ class StateManager{
   void initState(String state){
     _currentState = _stateMap[state];
     _currentSubscription = _currentState.listen((message){print("Message: $message");},
-            onDone: onDoneHandler);
+    onDone: onDoneHandler);
+
+    //pause-resume test
+    pauseState();
+    resumeState();
   }
   
   void onDoneHandler(){
@@ -39,6 +43,10 @@ class StateManager{
     _currentState = _stateMap[_currentState.nextState];
     _currentSubscription = _currentState.listen((message){print("Message: $message");},
         onDone: onDoneHandler);
+
+    //pause-resume test
+    pauseState();
+    resumeState();
   }
 
 	void pauseState(){

@@ -1,21 +1,18 @@
 import 'state.dart';
-
+import 'dart:async';
 
 class Init extends State{
   Init([String nextState]):super(nextState);
   
   preload(){
-    addMessage("Init:Preloading");
+    print("Init:Preloading");
   }
   create(){
-    addMessage("Init:Creating");
+    print("Init:Creating");
   }
   update(){
-    addMessage("Init:Updating");
+    print("Init:Updating");
     
-    for(var i=0;i < 5;i++){
-      addMessage("Processing");
-    }
-    closeStream();
+    new Timer(new Duration(seconds:1),closeStream);
   }
 }
