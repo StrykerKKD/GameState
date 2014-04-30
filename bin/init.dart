@@ -2,16 +2,10 @@ import 'state.dart';
 import 'dart:async';
 
 class Init extends State{
-  Init([String nextState]):super(nextState);
-  
-  preload(){
-    print("Init:Preloading");
-  }
-  create(){
-    print("Init:Creating");
-  }
-  update(){
-    print("Init:Updating");
+  Init(String name, [String nextState]):super(name, nextState);
+
+  run(){
+    print("Init:running");
     
     new Timer(new Duration(seconds:1),closeStream);
   }

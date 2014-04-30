@@ -1,11 +1,14 @@
 import 'dart:async';
 
-abstract class State extends Stream<String> {
+abstract class State{
+
+	static const String PAUSE = "PAUSE";
 
 	StreamController<String> _controller;
+	String _name;
   String _nextState;
   
-  State([String nextState = null]): _nextState = nextState {
+  State(this._name,[String nextState = null]): _nextState = nextState {
 	  _controller = new StreamController<String>(
 			  onListen: _onListen,
 			  onPause: _onPause,
@@ -25,9 +28,7 @@ abstract class State extends Stream<String> {
   
   void _onListen(){
 	  print("Constructing");
-    preload();
-    create();
-    update();
+    run();
   }
   
   void _onPause(){
@@ -36,25 +37,28 @@ abstract class State extends Stream<String> {
   
   void _onResume(){
 	  print("Resume");
+	  run();
   }
   
   void _onCancel(){
 	  print("Deconstructing");
   }
   
-  preload(){}
+  run(){}
   
-  create(){}
-  
-  update(){}
-  
-  String get nextState => _nextState;
+  String get name => _name;
+
+	String get nextState => _nextState;
   
   set nextState(state) => _nextState=state;
   
   void addMessage(message){
     _controller.add(message);
   }
+
+	void pauseStream(){
+		_controller.add(PAUSE);
+	}
   
   void closeStream(){
     _controller.close();
