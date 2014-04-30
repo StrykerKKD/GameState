@@ -1,6 +1,6 @@
 import 'dart:async';
 
-abstract class State{
+abstract class State extends Stream<String>{
 
 	static const String PAUSE = "PAUSE";
 
